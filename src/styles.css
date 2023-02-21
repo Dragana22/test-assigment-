@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-.payment{
+body{
   background-image: url("assets/images/micheile-dot-com-lZ_4nPFKcV8-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.custom-container{
+  max-width: 560px;
 }
