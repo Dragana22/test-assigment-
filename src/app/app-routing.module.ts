@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ChangeMoneyComponent} from "./pages/change-money/change-money.component";
 import {PaymentMoneyComponent} from "./pages/payment-money/payment-money.component";
 
+
 const routes: Routes = [
   {path: "", redirectTo: 'change-money' ,pathMatch: 'full'},
   {path: "change-money", component: ChangeMoneyComponent},

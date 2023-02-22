@@ -5,30 +5,30 @@
   <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="payment-form">
     <div class="form-group mb-3">
       <label for="5KM">5KM</label>
-      <input type="number" class="form-control" id="5KM" formControlName="inputCoin5">
+      <input type="number" class="form-control" id="5KM" formControlName="inputCoin5" #numberOfCoin>
     </div>
     <div class="form-group mb-3">
       <label for="2KM">2KM</label>
-      <input type="number" class="form-control" id="2KM" formControlName="inputCoin2">
+      <input type="number" class="form-control" id="2KM" formControlName="inputCoin2" #numberOfCoin>
     </div>
     <div class="form-group mb-3">
       <label for="1KM">1KM</label>
-      <input type="number" class="form-control" id="1KM" formControlName="inputCoin1">
+      <input type="number" class="form-control" id="1KM" formControlName="inputCoin1" #numberOfCoin>
     </div>
     <div class="form-group mb-3">
       <label for="50pf">0.50KM</label>
-      <input type="number" class="form-control" id="50pf" formControlName="inputCoin50pf">
+      <input type="number" class="form-control" id="50pf" formControlName="inputCoin50pf" #numberOfCoin>
     </div>
     <div class="form-group mb-3">
       <label for="20pf">0.20KM</label>
-      <input type="number" class="form-control" id="20pf" formControlName="inputCoin20pf">
+      <input type="number" class="form-control" id="20pf" formControlName="inputCoin20pf" #numberOfCoin>
     </div>
     <div class="form-group mb-3">
       <label for="10pf">0.10KM</label>
-      <input type="number" class="form-control" id="10pf" formControlName="inputCoin10pf">
+      <input type="number" class="form-control" id="10pf" formControlName="inputCoin10pf" #numberOfCoin>
     </div>
     <div class="text-end">
-      <button type="submit" class="btn btn-success mt-4">Submit</button>
+      <button type="submit" class="btn btn-success mt-4" >Submit</button>
     </div>
   </form>
   <app-coins class="coins"

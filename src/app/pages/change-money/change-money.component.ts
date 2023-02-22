@@ -1,16 +1,25 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {CoinsComponent} from "../../components/coins/coins.component";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../app.state";
+import {Coins} from "../../coin/coin.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-change-money',
   templateUrl: './change-money.component.html',
   styleUrls: ['./change-money.component.css']
 })
-export class ChangeMoneyComponent {
+export class ChangeMoneyComponent implements OnInit {
   amountForm = new FormGroup({
     amount: new FormControl()
   });
+
+
+  constructor(private store: Store<AppState>, private router: Router) {
+  }
+
   imports: any;
   number: any;
   submitted: boolean | undefined;
@@ -19,13 +28,17 @@ export class ChangeMoneyComponent {
     0, 0, 0, 0, 0, 0
   ];
 
+  initialCoins = [
+    0, 0, 0, 0, 0, 0
+  ];
 
-  onClick(){
+
+  onSubmit() {
     this.calculateCoins(this.amountForm.controls["amount"].value);
-    console.warn(this.amountForm.value);
   }
 
-  calculateCoins(amount:number) {
+
+  calculateCoins(amount: number) {
     this.coins = [
       0, 0, 0, 0, 0, 0
     ];
@@ -34,11 +47,12 @@ export class ChangeMoneyComponent {
     ]
 
 
-    let totalCoins = [
-      2, 5, 3, 1, 3, 2
-    ]
-    let totalMoney = 24;
-
+    let totalMoney = 0;
+    this.initialCoins.forEach((coin, index) => {
+      for (let i = 0; i < coin; i++) {
+        totalMoney = parseFloat((totalMoney + CV[index]).toFixed(1))
+      }
+    });
 
     if (totalMoney < amount) {
       return
@@ -49,16 +63,25 @@ export class ChangeMoneyComponent {
         return
       }
       let numberOfCoins = 0;
-      while (restAmount >= CV[index] && totalCoins[index] > 0) {
+      while (restAmount >= CV[index] && this.initialCoins[index] > 0) {
         restAmount = parseFloat((restAmount - CV[index]).toFixed(1));
         numberOfCoins++
-        totalCoins[index]--
+        this.initialCoins[index]--
       }
       this.coins[index] = numberOfCoins
     });
 
 
-    console.log(this.coins)
+  }
+
+  ngOnInit(): void {
+    this.store.select(state => state.coins).subscribe((coins) => {
+      if (coins == undefined) {
+        this.router.navigate(['/payment-money']);
+        return;
+      }
+      this.initialCoins = Object.values(coins);
+    })
   }
 
 }

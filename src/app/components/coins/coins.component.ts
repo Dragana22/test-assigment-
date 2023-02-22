@@ -5,6 +5,8 @@ import {Component, Input} from '@angular/core';
   templateUrl: './coins.component.html',
   styleUrls: ['./coins.component.css']
 })
+
+
 export class CoinsComponent {
   @Input() coin5KM: any  = "0"
   @Input() coin2KM: any = "0"
@@ -14,3 +16,5 @@ export class CoinsComponent {
   @Input() coin10pf: any = "0"
 
 }
+
+
